@@ -1,6 +1,13 @@
 <!doctype html>
 <meta charset="utf-8">
-
+<label for="length_number">文字数:</label>
+<select id="length_number">
+    <option>8</option>
+    <option>12</option>
+    <option>24</option>
+    <option>32</option>
+    <option>64</option>
+</select>
 <button type="button" onclick="generateAndCopy()">PASSWORD</button>
 <p id="output"></p>
 
@@ -27,7 +34,8 @@ async function copyToClipboard(text) {
 }
 
 function generateAndCopy() {
-    const randomString = random(8);
+    const num = document.getElementById("length_number").value;
+    const randomString = random(num);
     document.getElementById('output').innerText = randomString;
     copyToClipboard(randomString);
 }
