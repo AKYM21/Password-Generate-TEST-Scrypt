@@ -1,0 +1,34 @@
+<!doctype html>
+<meta charset="utf-8">
+
+<button type="button" onclick="generateAndCopy()">PASSWORD</button>
+<p id="output"></p>
+
+<script>
+function random(length = 8) {
+    const alpha_number = ['ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789#$*+&'];
+    let character = '';
+
+    for (let str of alpha_number) {
+        character += str;
+    }
+
+    character = character.split('').sort(() => Math.random() - 0.5).join('');
+
+    return character.substring(0, length);
+}
+async function copyToClipboard(text) {
+    try {
+        await navigator.clipboard.writeText(text);
+        alert("Copied to clipboard: " + text);
+    } catch (err) {
+        console.error('Failed to copy: ', err);
+    }
+}
+
+function generateAndCopy() {
+    const randomString = random(8);
+    document.getElementById('output').innerText = randomString;
+    copyToClipboard(randomString);
+}
+</script>
